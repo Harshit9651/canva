@@ -18,9 +18,13 @@ onMounted(() => {
   fabric.Image.fromURL(
     "https://images.pexels.com/photos/271649/pexels-photo-271649.jpeg?auto=compress&cs=tinysrgb&w=600",
     function (img) {
-      img.scale(0.5);
-      canvas.add(img);
-      canvas.renderAll();
+      img.set({
+        height: "10rem",
+        width: "10rem",
+      });
+      canvas.setBackgroundImage(img,()=>{
+        canvas.renderAll()
+      })
     }
   );
 });
