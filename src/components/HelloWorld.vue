@@ -1,39 +1,56 @@
-
 <template>
   <div class="page-wrapper">
     <div class="canvas-wrapper"><canvas id="canvas"></canvas></div>
   </div>
 </template>
- <!-- eslint-disable  -->
+
 <script setup>
-
-import *as fabric from 'fabric'
-
+import * as fabric from "fabric";
 import { onMounted } from "vue";
+
 let canvasElement;
 let canvas;
+
 function initCanvas() {
   canvasElement = document.getElementById("canvas");
+
   canvas = new fabric.Canvas(canvasElement, {
     height: 500,
-    width: 100,
+    width: 500,
   });
+
+  fabric.Image.fromURL(
+    "https://images.pexels.com/photos/16465970/pexels-photo-16465970/free-photo-of-a-woman-posing-in-a-vast-yellow-flower-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+    function (img) {
+      img.set({
+        left: 50,
+        top: 50,
+        scaleX: 0.5,
+        scaleY: 0.5,
+        height: 200,
+        width: 200,
+      });
+      canvas.add(img);
+    }
+  );
 }
+
 onMounted(() => {
   initCanvas();
 });
 </script>
+
 <style lang="scss" scoped>
 .page-wrapper {
   .canvas-wrapper {
     width: 70%;
-    height: auto; 
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     -webkit-box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
-  -moz-box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
-  box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
+    -moz-box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
+    box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
   }
 }
 </style>
