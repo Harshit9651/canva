@@ -1,44 +1,39 @@
-<template>
-  <div>
-    <h1>Fabric.js</h1>
 
-    <canvas ref="canvas"></canvas>
+<template>
+  <div class="page-wrapper">
+    <div class="canvas-wrapper"><canvas id="canvas"></canvas></div>
   </div>
 </template>
-
+ <!-- eslint-disable  -->
 <script setup>
-import { onMounted, ref } from "vue";
-// import * as fabric from "fabric";
-// import { fabric } from 'fabric';
-import fabric
 
-const canvasRef = ref(null);
+import *as fabric from 'fabric'
 
+import { onMounted } from "vue";
+let canvasElement;
+let canvas;
+function initCanvas() {
+  canvasElement = document.getElementById("canvas");
+  canvas = new fabric.Canvas(canvasElement, {
+    height: 500,
+    width: 100,
+  });
+}
 onMounted(() => {
-  const canvas = new fabric.Canvas(canvasRef.value);
-  fabric.Image.fromURL(
-    "https://images.pexels.com/photos/271649/pexels-photo-271649.jpeg?auto=compress&cs=tinysrgb&w=600",
-    function (img) {
-      img.set({
-        height: "10rem",
-        width: "10rem",
-      });
-      canvas.setBackgroundImage(img,()=>{
-        canvas.renderAll()
-      })
-    }
-  );
+  initCanvas();
 });
 </script>
-
 <style lang="scss" scoped>
-canvas {
-  border: 1px solid #ccc;
-  height: 30.75rem;
-  width: 30.5rem;
-  border-radius: 1rem;
-  -webkit-box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
+.page-wrapper {
+  .canvas-wrapper {
+    width: 70%;
+    height: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
   -moz-box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
   box-shadow: 1px -4px 15px -1px rgba(110, 62, 110, 1);
+  }
 }
 </style>
