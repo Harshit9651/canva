@@ -8,8 +8,9 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import * as fabric from "fabric";
+// import * as fabric from "fabric";
 // import { fabric } from 'fabric';
+import fabric
 
 const canvasRef = ref(null);
 
